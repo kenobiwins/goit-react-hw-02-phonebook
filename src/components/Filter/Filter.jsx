@@ -1,9 +1,10 @@
-export const Filter = ({handlerFilterInput,filterValue}) => {
-
+import { Input, Label } from 'components/PhonebookForm/PhonebookForm.styled';
+export const Filter = ({ handlerFilterInput, filterValue }) => {
   return (
     <>
-      <label htmlFor="filter">Find contacts by name</label>
-      <input
+      <Label htmlFor="filter">Find contacts by name</Label>
+      <Input
+        autoComplete="off"
         id="filter"
         type="text"
         name="filter"

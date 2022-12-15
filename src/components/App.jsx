@@ -4,6 +4,7 @@ import { PhonebookForm } from './PhonebookForm/PhonebookForm';
 import { Section } from './Section/Section';
 import { Filter } from './Filter/Filter';
 import { ContactsList } from './ContactsList/ContactsList';
+
 export class App extends Component {
   state = {
     contacts: [

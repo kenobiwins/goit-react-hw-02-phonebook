@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { Form, Label, Input } from './PhonebookForm.styled';
+import { Button } from 'components/BaseStyles/BaseStyles.styled';
 
 export class PhonebookForm extends Component {
   state = {
@@ -7,7 +9,7 @@ export class PhonebookForm extends Component {
   };
 
   handleInput = e => {
-      const { name, value } = e.currentTarget;
+    const { name, value } = e.currentTarget;
     this.setState({
       [name]: value,
     });
@@ -22,16 +24,16 @@ export class PhonebookForm extends Component {
 
   render() {
     const { onSubmit } = this.props;
-    const {name,number} = this.state
+    const { name, number } = this.state;
     return (
-      <form
+      <Form
         onSubmit={e => {
           onSubmit(e, this.state, this.reset);
         }}
         autoComplete="off"
       >
-        <label htmlFor="name">Name</label>
-        <input
+        <Label htmlFor="name">Name</Label>
+        <Input
           id="name"
           type="text"
           name="name"
@@ -41,8 +43,8 @@ export class PhonebookForm extends Component {
           onChange={this.handleInput}
           value={name}
         />
-        <label htmlFor="number">Number</label>
-        <input
+        <Label htmlFor="number">Number</Label>
+        <Input
           id="number"
           type="tel"
           name="number"
@@ -52,8 +54,8 @@ export class PhonebookForm extends Component {
           onChange={this.handleInput}
           value={number}
         />
-        <button type="submit">Add contact</button>
-      </form>
+        <Button type="submit">Add contact</Button>
+      </Form>
     );
   }
 }
