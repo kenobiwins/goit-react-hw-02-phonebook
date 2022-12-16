@@ -21,6 +21,11 @@ export const Input = styled.input`
   transition: transform 250ms linear, border-color 250ms linear,
     color 250ms linear;
 
+  + button {
+    width: 190px;
+    margin: 0 auto ${p => p.theme.space[3]}px;
+  }
+
   :focus,
   :hover,
   :focus-visible {

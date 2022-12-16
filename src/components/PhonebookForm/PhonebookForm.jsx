@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { Form, Label, Input } from './PhonebookForm.styled';
 import { Button } from 'components/BaseStyles/BaseStyles.styled';
@@ -59,3 +60,14 @@ export class PhonebookForm extends Component {
     );
   }
 }
+
+PhonebookForm.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onSubmit: PropTypes.func,
+};

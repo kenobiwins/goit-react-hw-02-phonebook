@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Container } from 'components/Container/Container';
 
 export const Section = ({ majorTitle, title, children }) => {
@@ -10,4 +11,9 @@ export const Section = ({ majorTitle, title, children }) => {
       </Container>
     </section>
   );
+};
+
+Section.propTypes = {
+  majorTitle: PropTypes.string,
+  title: PropTypes.string,
 };

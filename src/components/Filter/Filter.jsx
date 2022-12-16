@@ -1,5 +1,8 @@
+import PropTypes from 'prop-types';
 import { Input, Label } from 'components/PhonebookForm/PhonebookForm.styled';
-export const Filter = ({ handlerFilterInput, filterValue }) => {
+import { Button } from 'components/BaseStyles/BaseStyles.styled';
+
+export const Filter = ({ handlerFilterInput, filterValue, filterReset }) => {
   return (
     <>
       <Label htmlFor="filter">Find contacts by name</Label>
@@ -14,6 +17,15 @@ export const Filter = ({ handlerFilterInput, filterValue }) => {
         onChange={handlerFilterInput}
         value={filterValue}
       />
+      <Button type="button" onClick={filterReset}>
+        clear the entry field
+      </Button>
     </>
   );
+};
+
+Filter.propTypes = {
+  handlerFilterInput: PropTypes.func.isRequired,
+  filterValue: PropTypes.string.isRequired,
+  filterReset: PropTypes.func,
 };

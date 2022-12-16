@@ -18,6 +18,7 @@ export class App extends Component {
     ],
     filter: '',
   };
+
   handleDelete = e => {
     const { id } = e.currentTarget.closest('li').dataset;
 
@@ -29,6 +30,7 @@ export class App extends Component {
       return { contacts: [...newArr] };
     });
   };
+
   handleFilterInput = e => {
     const { value } = e.currentTarget;
     this.setState({
@@ -66,7 +68,9 @@ export class App extends Component {
       return el.name.toLowerCase().includes(filter.toLowerCase().trim());
     });
   };
-
+  resetFilter = () => {
+    this.setState({ filter: '' });
+  };
   render() {
     const { contacts, filter } = this.state;
     return (
@@ -79,6 +83,7 @@ export class App extends Component {
           <Filter
             handlerFilterInput={this.handleFilterInput}
             filterValue={filter}
+            filterReset={this.resetFilter}
           />
           <ContactsList
             contacts={this.filterContacts()}
