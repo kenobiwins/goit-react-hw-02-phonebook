@@ -34,3 +34,4 @@ export const Input = styled.input`
     transform: scale(1.1);
   }
 `;
+// background-color: ${p => (p.value ? null : 'transparent')};
