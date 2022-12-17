@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { Button } from 'components/BaseStyles/BaseStyles.styled';
-import { ContactList, ListItem } from './ContactsList.styled';
+import { ContactList } from './ContactsList.styled';
+import { ContactsListItem } from 'components/ContactsListItem/ContactsListItem';
 // const ColtactListItem = ({ element:{name,number,id},deleteData }) => {
 
 //     return (
@@ -15,15 +15,15 @@ export const ContactsList = ({ contacts, deleteData }) => {
     <ContactList>
       {contacts.map(({ id, name, number }) => {
         return (
-          <ListItem key={id} data-id={id}>
-            {name}: {number}
-            <Button onClick={deleteData}>Delete</Button>
-          </ListItem>
+          <ContactsListItem
+            key={id}
+            name={name}
+            id={id}
+            number={number}
+            deleteData={deleteData}
+          />
         );
       })}
-      {/* {contacts.map(el => {
-          return <ColtactListItem key={el.id} element={el} deleteData={deleteData} />;
-      })} */}
     </ContactList>
   );
 };

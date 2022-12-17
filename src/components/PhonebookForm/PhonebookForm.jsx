@@ -9,11 +9,29 @@ export class PhonebookForm extends Component {
     number: '',
   };
 
+  static propTypes = {
+    contacts: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        number: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    onSubmit: PropTypes.func,
+  };
+
   handleInput = e => {
     const { name, value } = e.currentTarget;
     this.setState({
       [name]: value,
     });
+  };
+
+  submitForm = e => {
+    e.preventDefault();
+    const { onSubmit } = this.props;
+    onSubmit(this.state);
+    this.reset();
   };
 
   reset = () => {
@@ -24,15 +42,9 @@ export class PhonebookForm extends Component {
   };
 
   render() {
-    const { onSubmit } = this.props;
     const { name, number } = this.state;
     return (
-      <Form
-        onSubmit={e => {
-          onSubmit(e, this.state, this.reset);
-        }}
-        autoComplete="off"
-      >
+      <Form onSubmit={this.submitForm} autoComplete="off">
         <Label htmlFor="name">Name</Label>
         <Input
           id="name"
@@ -60,14 +72,3 @@ export class PhonebookForm extends Component {
     );
   }
 }
-
-PhonebookForm.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  onSubmit: PropTypes.func,
-};

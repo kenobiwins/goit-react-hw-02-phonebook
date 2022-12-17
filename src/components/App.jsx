@@ -19,8 +19,12 @@ export class App extends Component {
     filter: '',
   };
 
-  handleDelete = e => {
-    const { id } = e.currentTarget.closest('li').dataset;
+  handleDelete = ({
+    currentTarget: {
+      dataset: { id },
+    },
+  }) => {
+    // const { id } = e.currentTarget.closest('li').dataset;
 
     const newArr = this.state.contacts.filter(el => {
       return el.id !== id;
@@ -38,8 +42,7 @@ export class App extends Component {
     });
   };
 
-  handleSubmit = (e, state, foo) => {
-    e.preventDefault();
+  handleSubmit = state => {
     const { name, number } = state;
 
     const user = {
@@ -51,7 +54,7 @@ export class App extends Component {
 
     if (usersInclude) {
       alert(`${name} is already in contacts`);
-      foo();
+      // foo();
       return;
     }
     this.setState(prevState => {
@@ -59,7 +62,7 @@ export class App extends Component {
         contacts: [...prevState.contacts, user],
       };
     });
-    foo();
+    // foo();
   };
 
   filterContacts = () => {
@@ -68,9 +71,11 @@ export class App extends Component {
       return el.name.toLowerCase().includes(filter.toLowerCase().trim());
     });
   };
-  resetFilter = () => {
-    this.setState({ filter: '' });
-  };
+
+  // resetFilter = () => {
+  //   this.setState({ filter: '' });
+  // };
+
   render() {
     const { contacts, filter } = this.state;
     return (
