@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { Form, Label, Input } from './PhonebookForm.styled';
-import { Button } from 'components/BaseStyles/BaseStyles.styled';
+import { Button } from 'BaseStyles/BaseStyles.styled';
 
 export class PhonebookForm extends Component {
   state = {
@@ -10,13 +10,6 @@ export class PhonebookForm extends Component {
   };
 
   static propTypes = {
-    contacts: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        number: PropTypes.string.isRequired,
-      })
-    ).isRequired,
     onSubmit: PropTypes.func,
   };
 
@@ -30,8 +23,12 @@ export class PhonebookForm extends Component {
   submitForm = e => {
     e.preventDefault();
     const { onSubmit } = this.props;
-    onSubmit(this.state);
-    this.reset();
+    // const checkState = onSubmit(this.state);
+    if (onSubmit(this.state) === null) {
+      return;
+    } else {
+      this.reset();
+    }
   };
 
   reset = () => {

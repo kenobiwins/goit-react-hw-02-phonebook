@@ -11,21 +11,12 @@ export class App extends Component {
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
       { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-5', name: 'Larry Copeland', number: '287-91-26' },
-      { id: 'id-6', name: 'Eden Copeland', number: '227-91-26' },
-      { id: 'id-7', name: 'Annie Eden', number: '247-91-26' },
-      { id: 'id-8', name: 'Clement Copeland', number: '297-91-26' },
+      { id: 'id-4', name: 'Larry Copeland', number: '287-91-26' },
     ],
     filter: '',
   };
 
-  handleDelete = ({
-    currentTarget: {
-      dataset: { id },
-    },
-  }) => {
-    // const { id } = e.currentTarget.closest('li').dataset;
-
+  handleDelete = id => {
     const newArr = this.state.contacts.filter(el => {
       return el.id !== id;
     });
@@ -54,15 +45,13 @@ export class App extends Component {
 
     if (usersInclude) {
       alert(`${name} is already in contacts`);
-      // foo();
-      return;
+      return null;
     }
     this.setState(prevState => {
       return {
         contacts: [...prevState.contacts, user],
       };
     });
-    // foo();
   };
 
   filterContacts = () => {
@@ -77,18 +66,17 @@ export class App extends Component {
   // };
 
   render() {
-    const { contacts, filter } = this.state;
+    const { filter } = this.state;
     return (
       <>
         <Section majorTitle={'Phonebook'}>
-          <PhonebookForm contacts={contacts} onSubmit={this.handleSubmit} />
+          <PhonebookForm onSubmit={this.handleSubmit} />
         </Section>
 
         <Section title={'Contacts'}>
           <Filter
             handlerFilterInput={this.handleFilterInput}
             filterValue={filter}
-            filterReset={this.resetFilter}
           />
           <ContactsList
             contacts={this.filterContacts()}
